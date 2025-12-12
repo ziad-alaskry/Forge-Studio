@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  @apply bg-forgeDark text-white font-forge;
+}
+
+* {
+  transition: all 0.2s ease;
+}
+
+html {
+  font-size: 15px;;
+}
+@media (min-width:640px) {
+  html {
+    font-size: 16px;
+  }
+}
