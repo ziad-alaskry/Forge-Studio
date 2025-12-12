@@ -2,7 +2,7 @@ import ForgeParallaxGlow from "./ForgeParallaxGlow";
 import ForgeOrb from "./ForgeOrb";
 import RevealText from "./RevealText";
 import ForgeButton from "../ui/ForgeButton";
-import ForgeContainer from "../ui/ForgeContainer";
+import ForgeContainer from "@/components/ui/ForgeContainer";
 
 const ForgeHero = () => {
     return ( 
