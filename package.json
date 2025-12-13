@@ -10,6 +10,8 @@
   },
   "dependencies": {
     "@apollo/client": "^4.0.10",
+    "@apollo/server": "^5.2.0",
+    "@as-integrations/next": "^4.1.0",
     "apollo-server-micro": "^3.13.0",
     "clsx": "^2.1.1",
     "framer-motion": "^12.23.26",
