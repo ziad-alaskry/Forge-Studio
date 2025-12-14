@@ -14,6 +14,12 @@ export const typeDefs = `#graphql
 
         type Query {
             services: [Service!]!
-            project: [Project!]!
+            projects: [Project!]!
             }
+
+        type Mutation {
+            createService(title:String! , description:String!): Service!
+            createProject(title:String! , category:String!): Project!
+        }
+
         `;
