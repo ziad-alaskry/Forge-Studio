@@ -1,36 +1,32 @@
-import mongoose, {Schema, model, models} from "mongoose";
+import mongoose, { Schema, models } from "mongoose";
 
-/** 
- * A Lead is anyone who contacts Forge Studio .
- * This is Not a use btw.
- */
 const LeadSchema = new Schema(
-    {
-        name: {
-            type: String,
-            required: true,
-            trim: true,
-        },
-        email: {
-            type:String,
-            required: true,
-            trim:true,
-        },
-        /**
-         * Helps us track the business state
-         * without deleting data.
-         */
-        status: {
-            type: String,
-            enum: ["new", "contacted", "converted"],
-            default: "new",
-        },
+  {
+    name: {
+      type: String,
+      required: true,
+      trim: true,
     },
-    {
-        timestamps: true , // createdAt , updatedAt
-    }
+
+    email: {
+      type: String,
+      required: true,
+      lowercase: true,
+      trim: true,
+    },
+
+    message: {
+      type: String,
+      required: true,
+    },
+
+    status: {
+      type: String,
+      enum: ["new", "contacted", "closed"],
+      default: "new",
+    },
+  },
+  { timestamps: true }
 );
 
-const Lead = models.Lead || model("Lead", LeadSchema);
-
-export default Lead;
+export const Lead = models.Lead || mongoose.model("Lead", LeadSchema);

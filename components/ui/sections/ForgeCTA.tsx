@@ -1,7 +1,13 @@
 import ForgeContainer from "../ForgeContainer";
 import ForgeButton from "../ForgeButton";
+import ForgeContactModal from "@/components/ui/ForgeContactModal";
+import { useContactModal } from "@/hooks/useContactModal";
+
 
 const ForgeCTA = () => {
+
+    const contactModal = useContactModal();
+
      return (
         <section className="py-32 bg-forgeDark">
             <ForgeContainer>
@@ -50,7 +56,12 @@ const ForgeCTA = () => {
                         <div className="pt-4">
                             <ForgeButton
                             label="Let's Talk"
+                            onClick={contactModal.open}
                             //href="/contact"
+                            />
+                            <ForgeContactModal 
+                            isOpen={contactModal.isOpen}
+                            onClose={contactModal.close} 
                             />
                             <p className="text-white/50 text-sm mt-3">
                             No commitments. Just clarity
