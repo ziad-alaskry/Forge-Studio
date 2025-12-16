@@ -1,46 +1,31 @@
-import ForgeParallaxGlow from "./ForgeParallaxGlow";
+//import ForgeParallaxGlow from "./ForgeParallaxGlow";
 import ForgeOrb from "./ForgeOrb";
-import RevealText from "./RevealText";
+//import RevealText from "./RevealText";
 import ForgeButton from "../ui/ForgeButton";
 import ForgeContainer from "@/components/ui/ForgeContainer";
 
 const ForgeHero = () => {
-    return ( 
-        <div className="relative overflow-hidden pt-32 pb-20">
-            <ForgeParallaxGlow/>
+    return (    
+        <section className="relative py-32 overflow-hidden bg-black">
+            {/* subtle visual accent */}
+            <ForgeOrb/>
             <ForgeContainer>
-                {/* GRID: Text Left, Orb Right */}
-                <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-12">
-
-                    {/* TEXT */}
-                    <div className="text-center md:text-left space-y-6">
-                        <RevealText>
-                            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold
-                            text-forgeBlue drop-shadow-md">
-                                Crafting Experiences 
-                            </h1>
-                        </RevealText>
-                        <RevealText delay={0.2}>
-                            <p className="text-base sm:text-lg text-gray-300 max-w-md">
-                                Forge Studio is a premium digital workshop bringing
-                                Expert-level clarity,motion ,and craftsmanship to modern web applications.
-                            </p>
-                        </RevealText>
-                        <RevealText delay={0.4}>
-                            <ForgeButton label="Start a project"/>
-                        </RevealText>
+                <div className="grid grid-cols1 lg:grid-cols-2 gap-16 items-center">
+                    <h1 className="text-4xl md:text-5xl xl:text-6xl
+                    font-semibold text-white leading-tight">
+                        We build production-grade systems for modern businesses.
+                    </h1>
+                    <p className="text-lg text-white/70 max-w-xl ">
+                        Admin dashboards, internal tools, and scalable web 
+                        platforms - designed, built, and shipped with engineering descipline.
+                    </p>
+                    <div className="flex gap-4 pt-4">
+                        <ForgeButton label="View Services"/>
+                        <ForgeButton variant="secondary" label="Contact Studio"/>
                     </div>
-                    
-                    {/* ORB */}
-                    <div className="flex justify-center md:justify-end">
-                        <ForgeOrb/>
-                    </div>
-
                 </div>
             </ForgeContainer>
-
-        </div>
+        </section>
     )
 }
-
 export default ForgeHero;

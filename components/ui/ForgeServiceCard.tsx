@@ -2,22 +2,30 @@ import {FC} from "react";
 import { ForgeService } from "@/data/servicesData";
 
 interface ForgeServiceCardProps {
-    service: ForgeService;
+    title: string;
+    description:string;
+    points:string[];
 }
 
-const ForgeServiceCard: FC<ForgeServiceCardProps> = ({service}) => {
+const ForgeServiceCard = ({title, description,points}:ForgeServiceCardProps)  => {
     return (
-        <div className="
-        bg-forgeMetal/40 backdrop-blur-xl
-        border border-forgeGlow/20 rounded-2xl
-        p-6 shadow-forgeGlow transition-all duration-300
-        hover:scale-[1.03] hover:border-forgeBlue">
-            <h3 className="text-xl font-semibold text-forgeBlue mb-2">
-                {service.title}
+        <div className="border border-white/10 hover:border-white  rounded-2xl p-8 bg-black/40">
+            <h3 className="text-xl font-semibold text-white mb-4">
+                {title}
             </h3>
-            <p className="text-gray-300 text-sm">
-                {service.description}
+            <p className="text-white/70 mb-6">
+                {description}
             </p>
+            <ul className="space-y-2">
+                {points.map((point, index)=> (
+                    <li 
+                    key={index}
+                    className="text-sm text-white/60"
+                    >
+                        - {point}
+                    </li>
+                ))}
+            </ul>
         </div>
     )
 }

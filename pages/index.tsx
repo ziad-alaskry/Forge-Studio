@@ -3,6 +3,9 @@ import ForgeHero from '@/components/hero/ForgeHero'
 import ForgeServices from '@/components/ui/sections/ForgeServices'
 import ForgePortfolio from '@/components/ui/sections/ForgePortfolio'
 import ForgePhilosophy from '@/components/ui/sections/ForgePhilosophy'
+import ForgeProcess from '@/components/ui/sections/ForgeProcess'
+import ForgeCTA from '@/components/ui/sections/ForgeCTA'
+import ForgeNavbar from '@/components/layout/ForgeNavbar'
 export default function Home() {
   return (
     <>
@@ -10,9 +13,12 @@ export default function Home() {
         <title>Forge Studio</title>
       </Head>
       <ForgeHero/>
-      <ForgePhilosophy/>
+      <ForgeNavbar/>
       <ForgeServices/>
       <ForgePortfolio/>
+      <ForgeProcess/>
+      <ForgeCTA/>
+      {/*<ForgePhilosophy/> */}
     </>
   )
 }

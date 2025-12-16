@@ -3,53 +3,60 @@ import ForgeContainer from "../ForgeContainer";
 import { useQuery } from "@apollo/client/react";
 import { GET_PROJECTS } from "@/graphql/queries";
 
-interface Project {
-    id:string;
-    title:string;
-    category:string;
-}
-
-interface ProjectsData {
-    projects: Project[] ;
-}
-
+const systems = [
+  {
+    title: "SaaS Admin Panel",
+    description:
+      "A secure administrative system for managing users, data, and internal operations.",
+    features: [
+      "OAuth authentication",
+      "Role-based access control",
+      "GraphQL-powered API",
+      "MongoDB data models",
+    ],
+  },
+  {
+    title: "Internal Service Manager",
+    description:
+      "An internal tool designed to manage services, workflows, and operational data.",
+    features: [
+      "Protected admin access",
+      "CRUD workflows",
+      "Scalable backend logic",
+      "Clean operational UI",
+    ],
+  },
+  {
+    title: "Content & Portfolio Platform",
+    description:
+      "A system for managing content and public-facing pages from a single admin interface.",
+    features: [
+      "Admin-managed content",
+      "API-driven frontend",
+      "Secure mutations",
+      "Performance-optimized UI",
+    ],
+  },
+];
 const ForgePortfolio = () => {
 
-    const {data ,loading, error} = useQuery<ProjectsData>(GET_PROJECTS);
-
-    if(loading) {
-        return (
-            <section className="py-24 text-center text-gray-400">
-                Loading projects
-            </section>
-        )
-    }
-
-    if(error) {
-        return (
-            <section className="py-24 text-center text-red-400">
-                Failed to load projects
-            </section>
-        )
-    }
-
-    if (!data || data.projects.length === 0) {
-        return <p className="text-gray-400">No projects yet</p>;
-    }
-    // data.projects.map((project:any)=>
     return (
-        <section className="py-24">
+        <section className="py-32 bg-black">
             <ForgeContainer>
-                <h2 className="text-3xl font-bold text-forgeBlue
-                mb-12 text-center">
-                    Selected Work 
-                </h2>
-                <div className="grid gap-6 sm:grid-cols-2
-                lg:grid-cols-3">
-                    {data.projects.map((project: Project)=> ( 
-                        <ForgePortfolioCard 
-                        key={project.id}
-                        project={project}/>
+                <div className="mb-16 max-w-2xl">
+                    <h2 className="text-3xl md:text-4xl font-semibold text-white mb-4">
+                        Systems We Deliver
+                    </h2>
+                    <p className="text-white/70">
+                        Production-ready systems built using modern, scalable architecture.
+                    </p>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    {systems.map((system) => (
+                        <ForgePortfolioCard
+                        key={system.title}
+                        {...system}
+                        />
                     ))}
                 </div>
             </ForgeContainer>

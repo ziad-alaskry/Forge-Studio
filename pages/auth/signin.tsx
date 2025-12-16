@@ -13,7 +13,9 @@ const SignInPage = () => {
                 <div className="flex flex-col gap-4 items-center">
                     <ForgeButton
                     label="Sign in with Google"
-                    onClick={() => signIn("google")}
+                    onClick={() => signIn("google", {
+                        callbackUrl:"/admin"
+                    })}
                     />
                     <ForgeButton
                     label="Sign in with GitHub"

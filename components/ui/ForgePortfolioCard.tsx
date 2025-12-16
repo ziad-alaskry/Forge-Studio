@@ -2,21 +2,32 @@ import {FC} from "react";
 import { ForgeProject } from "@/data/protfolioData";
 
 interface ForgePortfolioCardProps {
-    project: ForgeProject; 
+    title: string;
+    description:string;
+    features:string[];
 }
 
-const ForgePortfolioCard: FC<ForgePortfolioCardProps> = ({project}) => {
+
+const ForgePortfolioCard = ({title,description,features}:ForgePortfolioCardProps) => {
     return (
-        <div className=" bg-forgeMetal/30 border
-        border-forgeGlow/10 rounded-2xl p-6 
-        transition-all duration-300 hover:bg-forgeMetal/50
-        hover:shadow-forgeGlow">
-            <h3 className="text-lg font-semibold text-forgeBlue">
-                {project.title}
+        <div className=" border border-white/10 hover:border-white rounded-2xl
+        p-8 bg-black/40 mt-">
+            <h3 className="text-xl font-semibold text-white mb-4">
+                {title}
             </h3>
-            <p className="text-xs text-gray-400 mt-1">
-                {project.category}
+            <p className="text-white/70 mb-6">
+                {description}
             </p>
+            <ul className="space-y-2">
+                {features.map((feature,index)=> (
+                    <li 
+                    key={index}
+                    className="text-sm text-white/60"
+                    >
+                        - {feature}
+                    </li>
+                ))}
+            </ul>
         </div>
     )
 }

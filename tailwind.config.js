@@ -7,13 +7,13 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        forgeDark: "#0c0f17",
-        forgeMetal: "#1b2337",
-        forgeBlue: "#3b7bff",
-        forgeGlow: "rgba(59, 123, 255, 0.4)"
+        forgeDark: "#0C1614",
+        forgeMetal: "#3A403D",
+        forgeBlue: "#B39867",
+        forgeGlow: "rgba(179, 152, 103, 0.4)"
       },
       boxShadow: {
-        forgeGlow: "0 0 20px rgba(59,123,255,0.4)"
+        forgeGlow: "0 0 20px rgba(179, 152, 103, 0.4)"
       },
       fontFamily: {
         forge: ['Inter', 'sans-serif']
@@ -22,3 +22,21 @@ module.exports = {
   },
   plugins: [],
 };
+
+/**colors: {
+
+        forgeDark: "#0c0f17",
+
+        forgeMetal: "#1b2337",
+
+        forgeBlue: "#3b7bff",
+
+        forgeGlow: "rgba(59, 123, 255, 0.4)"
+
+      },
+
+      boxShadow: {
+
+        forgeGlow: "0 0 20px rgba(59,123,255,0.4)"
+
+      }, */

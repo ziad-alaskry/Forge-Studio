@@ -3,49 +3,60 @@ import ForgeContainer from "../ForgeContainer";
 import { GET_SERVICES } from "@/graphql/queries";
 import { useQuery } from "@apollo/client/react";
 
-interface Service {
-    id: string;
-    title: string;
-    description: string;
-}
 
-interface ServicesData {
-    services: Service[];
-}
+const services = [
+{
+    title: "Admin Dashboards",
+    description:
+      "Secure dashboards to manage users, content, and business data.",
+    points: [
+      "Authentication & roles",
+      "Real-time data management",
+      "Scalable API-backed architecture",
+    ],
+  },
+  {
+    title: "Internal Tools",
+    description:
+      "Custom tools that streamline workflows and eliminate manual work.",
+    points: [
+      "Business-specific logic",
+      "Automation-ready workflows",
+      "Clean, maintainable codebase",
+    ],
+  },
+  {
+    title: "Web Platforms",
+    description:
+      "Production-ready platforms built to scale from day one.",
+    points: [
+      "API-first design",
+      "Secure backend integration",
+      "Performance-focused frontend",
+    ],
+  }, 
+]
 
 const ForgeServices = () => {
-    const {data,loading,error} = useQuery<ServicesData>(GET_SERVICES)
-    
-    if(loading) {
-        return (
-        <section className="py-24 text-center text-gray-300">
-                Loading services... 
-        </section>)
-    }
 
-    if(error) {
-        return (
-            <section className="py-24 text-center text-red-400">
-                Failed to load services
-            </section>
-        )
-    }
-
-    if (!data || data.services.length === 0) {
-        return <p className="text-gray-400">No services yet</p>;
-     }
-
-// data.services.map((service:any) =>
     return (
-        <section className="py-24">
+        <section className="py-32 bg-black">
             <ForgeContainer>
-                <h2 className="text-3xl font-bold text-forgeBlue
-                mb-12 text-center">
-                    What We Forge
-                </h2>
-                <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-                    {data.services.map((service: Service) => (
-                        <ForgeServiceCard key={service.id} service={service} />
+                <div className="mb-16 max-w-2xl">
+                    <h2 className="text-3xl md:text-4xl font-semibold
+                    text-white mb-4">
+                        What We Build
+                    </h2>
+                    <p className="text-white/70">
+                        Focused systems designed to solve operational problems.
+                    </p>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 
+                lg:grid-cols-3 gap-8">
+                    {services.map((service) => (
+                        <ForgeServiceCard
+                        key={service.title}
+                        {...service} />
                     ))}
                 </div>
             </ForgeContainer>
