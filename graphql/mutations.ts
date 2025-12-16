@@ -20,3 +20,13 @@ export const CREATE_PROJECT = gql `
     }
 
 `;
+
+export const CREATE_LEAD = gql `
+    mutation CreateLead($name:String!, $email:String!, $message:String!) {
+        createLead(name: $name, email: $email, message: $message) {
+            id
+            status
+            createdAt
+        }
+    }
+`

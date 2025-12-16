@@ -1,5 +1,13 @@
 import { Service } from "@/models/Service"; 
 import { Project } from "@/models/Project";
+import { Lead } from "@/models/Lead";
+
+interface CreateLeadArgs {
+  name: string;
+  email: string;
+  message: string;
+}
+
 
 export const resolvers = {
     Query: {
@@ -13,6 +21,26 @@ export const resolvers = {
     },
 
     Mutation: {
+        
+        async createLead(_parent: unknown, args:CreateLeadArgs) {
+            const {name, email, message} = args;
+            
+            // basic validation
+            if(!name || !email || !message) {
+                throw new Error("All fields are required")
+            }
+            
+            // Save to DB
+            const lead = await Lead.create({
+                name,
+                email,
+                message,
+            });
+
+            return lead;
+
+        },
+
         createService: async (
             _: unknown, 
             args: {title:string, description:string}
