@@ -6,6 +6,7 @@ import ForgePhilosophy from '@/components/ui/sections/ForgePhilosophy'
 import ForgeProcess from '@/components/ui/sections/ForgeProcess'
 import ForgeCTA from '@/components/ui/sections/ForgeCTA'
 import ForgeNavbar from '@/components/layout/ForgeNavbar'
+import PricingSection from '@/components/ui/sections/PricingSection'
 export default function Home() {
   return (
     <>
@@ -17,6 +18,7 @@ export default function Home() {
       <ForgeServices/>
       <ForgePortfolio/>
       <ForgeProcess/>
+      <PricingSection/>
       <ForgeCTA/>
       {/*<ForgePhilosophy/> */}
     </>
