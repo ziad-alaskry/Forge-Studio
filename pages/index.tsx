@@ -7,7 +7,13 @@ import ForgeProcess from '@/components/ui/sections/ForgeProcess'
 import ForgeCTA from '@/components/ui/sections/ForgeCTA'
 import ForgeNavbar from '@/components/layout/ForgeNavbar'
 import PricingSection from '@/components/ui/sections/PricingSection'
+import { useContactModal } from "@/hooks/useContactModal";
+import ForgeContactModal from '@/components/ui/ForgeContactModal'
+import { useState } from 'react'
 export default function Home() {
+
+  const contactModal = useContactModal()
+
   return (
     <>
       <Head>
@@ -18,8 +24,13 @@ export default function Home() {
       <ForgeServices/>
       <ForgePortfolio/>
       <ForgeProcess/>
-      <PricingSection/>
-      <ForgeCTA/>
+      <PricingSection onSelectBundle={(bundleId) => contactModal.open(bundleId)}/>
+      <ForgeCTA onOpenContact={contactModal.open}/>
+      <ForgeContactModal
+        isOpen={contactModal.isOpen}
+        onClose={contactModal.close}
+        selectedBundle={contactModal.selectedBundle}
+      />
       {/*<ForgePhilosophy/> */}
     </>
   )

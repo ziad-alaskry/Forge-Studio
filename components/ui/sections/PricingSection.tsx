@@ -12,6 +12,10 @@ interface Bundle {
     highlighted?: boolean;
 }
 
+interface PricingSectionProps {
+    onSelectBundle: (bundleId: string) => void;
+}
+
 // static data feed 
 const bundles: Bundle[] = [
   {
@@ -56,7 +60,7 @@ const bundles: Bundle[] = [
   },
 ];
 
-const PricingSection = () => {
+const PricingSection = ({onSelectBundle}: PricingSectionProps) => {
     return (
         <section className="py-32 bg-black relativ">
             {/** Section header */}
@@ -109,10 +113,7 @@ const PricingSection = () => {
                                 label={bundle.cta}
                                 variant={bundle.highlighted ? "primary" : "secondary"}
                                 onClick={() => {
-                                    // Next Round
-                                    // This will open ForgeContactModal
-                                    //and pass bundle.id as preselectedBundle
-                                    <p> Selected bundle ${bundle.id}</p>
+                                        onSelectBundle(bundle.id)
                                 }} />
                             </div>
 

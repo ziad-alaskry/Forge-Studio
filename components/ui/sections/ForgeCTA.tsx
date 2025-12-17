@@ -4,7 +4,11 @@ import ForgeContactModal from "@/components/ui/ForgeContactModal";
 import { useContactModal } from "@/hooks/useContactModal";
 
 
-const ForgeCTA = () => {
+interface ForgeCTAProps{
+    onOpenContact: (bundleId?: string) => void;
+}
+
+const ForgeCTA = ({onOpenContact}:ForgeCTAProps) => {
 
     const contactModal = useContactModal();
 
@@ -56,12 +60,8 @@ const ForgeCTA = () => {
                         <div className="pt-4">
                             <ForgeButton
                             label="Let's Talk"
-                            onClick={contactModal.open}
+                            onClick={() => onOpenContact()}
                             //href="/contact"
-                            />
-                            <ForgeContactModal 
-                            isOpen={contactModal.isOpen}
-                            onClose={contactModal.close} 
                             />
                             <p className="text-white/50 text-sm mt-3">
                             No commitments. Just clarity

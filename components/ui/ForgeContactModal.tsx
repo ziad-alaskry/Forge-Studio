@@ -8,10 +8,11 @@ import { CREATE_LEAD } from "@/graphql/mutations";
 
 interface Props {
   isOpen: boolean;
+  selectedBundle?: string | null; // new (hanldles bundles from pricing cards selection)
   onClose: () => void;
 }
 
-const ForgeContactModal = ({ isOpen, onClose }: Props) => {
+const ForgeContactModal = ({ isOpen, onClose, selectedBundle }: Props) => {
   // 📍 Local UI state (form inputs only)
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -89,6 +90,17 @@ const ForgeContactModal = ({ isOpen, onClose }: Props) => {
                 Something went wrong. Please try again.
               </p>
             )}
+
+            {/* Show bundles inside modal */}
+            {selectedBundle && (
+              <div className="mb-4 text-sm text-forgeBlue">
+                Selected package: 
+                 <span className="font-semibold">
+                     {selectedBundle}
+                  </span>
+              </div>
+            ) }
+
 
             <form onSubmit={handleSubmit} className="space-y-4">
               {/* 📍 Inputs are dumb, controlled components */}
