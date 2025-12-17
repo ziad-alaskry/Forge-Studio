@@ -1,5 +1,8 @@
+// 📍 UI Component — owns presentation, not business logic
 import ForgeButton from "@/components/ui/ForgeButton";
 import { useState } from "react";
+
+// 📍 Data Layer Hook
 import { useMutation } from "@apollo/client/react";
 import { CREATE_LEAD } from "@/graphql/mutations";
 
@@ -9,56 +12,60 @@ interface Props {
 }
 
 const ForgeContactModal = ({ isOpen, onClose }: Props) => {
+  // 📍 Local UI state (form inputs only)
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
-  const [isSubmitted, setIsSubmitted] = useState(false); // Added state
-  
-  const [createLead, { loading, error }] = useMutation(CREATE_LEAD);
+
+  // 📍 Server interaction state (Apollo owns this)
+  const [createLead, { loading, error, data }] =
+    useMutation(CREATE_LEAD);
 
   if (!isOpen) return null;
 
+  // 📍 Submission handler — talks to backend only
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    try {
-      await createLead({
-        variables: { name, email, message },
-      });
-      
-      setName("");
-      setEmail("");
-      setMessage("");
-      setIsSubmitted(true); // Switch to success view instead of closing
-    } catch (err) {
-      console.error("Mutation failed:", err);
-    }
+
+    await createLead({
+      variables: { name, email, message },
+    });
+
+    // 📍 Reset form for next open (not for success state)
+    setName("");
+    setEmail("");
+    setMessage("");
   };
 
-  // Reset state when closing to ensure form returns for next time
+  // 📍 Close handler — resets entire modal lifecycle
   const handleClose = () => {
-    setIsSubmitted(false);
     onClose();
   };
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center">
-      
-      {/* Overlay */}
+
+      {/* 📍 Overlay (modal responsibility) */}
       <div
         className="absolute inset-0 bg-black/70 backdrop-blur"
         onClick={handleClose}
       />
 
-      {/* Modal */}
+      {/* 📍 Modal Shell */}
       <div className="relative z-10 w-full max-w-lg bg-forgeMetal/90 border border-forgeGlow/30 rounded-2xl p-8 shadow-forgeGlow">
-        
-        {isSubmitted ? (
-          /* Success View */
+
+        {/* ================= SUCCESS STATE ================= */}
+        {/* 📍 Driven by server response, not local flags */}
+        {data ? (
           <div className="text-center py-4">
-            <h2 className="text-2xl font-semibold text-white mb-2">Message Recieved! </h2>
+            <h2 className="text-2xl font-semibold text-white mb-2">
+              Message Received 🚀
+            </h2>
+
             <p className="text-white/60 mb-8">
-              Thank you. We have received your idea and will contact you back shortly.
+              Thank you. We’ve received your idea and will contact you shortly.
             </p>
+
             <ForgeButton
               label="Close"
               variant="primary"
@@ -66,8 +73,8 @@ const ForgeContactModal = ({ isOpen, onClose }: Props) => {
             />
           </div>
         ) : (
-          /* Form View */
           <>
+            {/* ================= FORM STATE ================= */}
             <h2 className="text-2xl font-semibold text-white mb-2">
               Inform us
             </h2>
@@ -76,17 +83,22 @@ const ForgeContactModal = ({ isOpen, onClose }: Props) => {
               Tell us about your idea and we’ll get back to you shortly.
             </p>
 
+            {/* 📍 Failure state — human readable */}
             {error && (
-              <p className="text-red-400 text-sm mb-4">Error: {error.message}</p>
+              <p className="text-red-400 text-sm mb-4">
+                Something went wrong. Please try again.
+              </p>
             )}
 
             <form onSubmit={handleSubmit} className="space-y-4">
+              {/* 📍 Inputs are dumb, controlled components */}
               <input
                 type="text"
                 placeholder="Your name"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 className="w-full p-3 rounded-lg bg-black/40 text-white outline-none focus:ring-1 focus:ring-forgeBlue"
+                required
               />
 
               <input
@@ -95,6 +107,7 @@ const ForgeContactModal = ({ isOpen, onClose }: Props) => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className="w-full p-3 rounded-lg bg-black/40 text-white outline-none focus:ring-1 focus:ring-forgeBlue"
+                required
               />
 
               <textarea
@@ -103,8 +116,10 @@ const ForgeContactModal = ({ isOpen, onClose }: Props) => {
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
                 className="w-full p-3 rounded-lg bg-black/40 text-white outline-none focus:ring-1 focus:ring-forgeBlue"
+                required
               />
 
+              {/* 📍 Action Row */}
               <div className="flex justify-end gap-4 pt-4">
                 <ForgeButton
                   label="Cancel"
@@ -113,9 +128,10 @@ const ForgeContactModal = ({ isOpen, onClose }: Props) => {
                 />
 
                 <ForgeButton
-                  label={loading ? "Sending" : "Send message"}
+                  label={loading ? "Sending..." : "Send message"}
                   variant="primary"
                   type="submit"
+                  
                 />
               </div>
             </form>
