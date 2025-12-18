@@ -3,6 +3,7 @@ import { useMutation } from "@apollo/client/react";
 import { CREATE_SERVICE } from "@/graphql/mutations";
 import { GET_SERVICES } from "@/graphql/queries";
 import ForgeButton from "../ui/ForgeButton";
+import AdminLeadsTable from "./AdminLeadsTable";
 
 const CreateServiceForm = () => {
     const [title,setTitle] = useState("");
@@ -26,7 +27,7 @@ const CreateServiceForm = () => {
         onSubmit={handleSubmit}
         className="bg-forgeMetal/40 p-6 rounded-2xl space-y-4"
         >
-            <h3 className="text-xl text-forgeBlue font-semibold">
+            {/* <h3 className="text-xl text-forgeBlue font-semibold">
                 Create Service 
             </h3>
             <input
@@ -35,7 +36,14 @@ const CreateServiceForm = () => {
             value={description}
             onChange={(e) => setDescription(e.target.value)}
             />
-            <ForgeButton label={loading? "Creating..." : "Create Service"}/>
+            <ForgeButton label={loading? "Creating..." : "Create Service"}/> */}
+
+            <section className="mt-2"> 
+                <h2 className="text-2xl text-forgeBlue font-semibold mb-6">
+                    Incoming Leads
+                </h2>
+                <AdminLeadsTable/>
+            </section>
         </form>
     )
 }

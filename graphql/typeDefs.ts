@@ -1,41 +1,61 @@
-export const typeDefs = `#graphql 
-        type Service {
-            id: ID! 
-            title: String!
-            description: String!
-        }
+export const typeDefs = `#graphql
 
-        type Lead {
-        id: ID!
-        name: String!
-        email: String!
-        message: String!
-        createdAt: String!
-        status: String!
-        }
+type Service {
+  id: ID!
+  title: String!
+  description: String!
+}
 
+type Project {
+  id: ID!
+  title: String!
+  category: String!
+}
 
-        type Project {
-            id:ID!
-            title:String!
-            category: String!
-        }
+enum LeadStatus {
+  NEW
+  CONTACTED
+  IN_PROGRESS
+  CLOSED
+}
 
-        type Query {
-            services: [Service!]!
-            projects: [Project!]!
-            }
+type Lead {
+  id: ID!
+  name: String!
+  email: String!
+  message: String!
+  bundle: String
+  createdAt: String
+  status: LeadStatus
+}
 
-        type Mutation {
+type Query {
+  services: [Service!]!
+  projects: [Project!]!
+  leads: [Lead!]!
+}
 
-            createLead(
-                name: String!
-                email: String!
-                message: String!
-            ): Lead!
+type Mutation {
+  createLead(
+    name: String!
+    email: String!
+    message: String!
+    bundle: String
+  ): Lead!
 
-            createService(title:String! , description:String!): Service!
-            createProject(title:String! , category:String!): Project!
-        }
+  updateLeadStatus(
+    id: ID!
+    status: LeadStatus!
+  ): Lead!
 
-        `;
+  createService(
+    title: String!
+    description: String!
+  ): Service!
+
+  createProject(
+    title: String!
+    category: String!
+  ): Project!
+}
+`;

@@ -14,7 +14,7 @@ const SignInPage = () => {
                     <ForgeButton
                     label="Sign in with Google"
                     onClick={() => signIn("google", {
-                        callbackUrl:"/admin"
+                        callbackUrl:"/"
                     })}
                     />
                     <ForgeButton

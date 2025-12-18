@@ -1,90 +1,121 @@
-import { Service } from "@/models/Service"; 
+import { Service } from "@/models/Service";
 import { Project } from "@/models/Project";
 import { Lead } from "@/models/Lead";
-import { mailer } from "@/lib/mailer"; 
+import { mailer } from "@/lib/mailer";
+import { connectDB } from "@/lib/db";
 
 interface CreateLeadArgs {
   name: string;
   email: string;
   message: string;
+  bundle?: string;
 }
 
-
 export const resolvers = {
-    Query: {
-        services: async () => {
-            return await Service.find();
-        },
-        
-        projects: async () => {
-            return await Project.find();
-        },
+  Query: {
+    services: async () => {
+      await connectDB();
+      return Service.find();
     },
 
-    Mutation: {
-        
-        async createLead(_parent: unknown, args:CreateLeadArgs) {
-            const {name, email, message} = args;
-            
-            // basic validation
-            if(!name || !email || !message) {
-                throw new Error("All fields are required")
-            }
-            
-            // Save to DB
-            const lead = await Lead.create({
-                name,
-                email,
-                message,
-            });
+    projects: async () => {
+      await connectDB();
+      return Project.find();
+    },
 
-            //Email to Client
-            await mailer.sendMail({
-                from:`"Forge Studio" <${process.env.EMAIL_USER}>`,
-                to: email,
-                subject: "We received your message 🚀",
-                html: `
-                    <h2>Hi ${name},</h2>
-                    <p>Thanks for reaching out to Forge Studio.</p>
-                    <p>We’ve received your message and will get back to you shortly.</p>
-                    <br/>
-                    <p>— Forge Studio Team</p>
-                `,
-            });
+    leads: async () => {
+      await connectDB();
+      return Lead.find().sort({ createdAt: -1 });
+    },
+  },
 
-            //Email To ME (Admin)
+  Mutation: {
+    createLead: async (_: unknown, args: CreateLeadArgs) => {
+      await connectDB();
 
-            await mailer.sendMail({
-                from:`"Forge Studio" <${process.env.EMAIL_USER}>`,
-                to: process.env.ADMIN_EMAIL,
-                subject:"New Forge Studio Lead",
-                html: `
-                    <h3>New Contact Submission</h3>
-                    <p><strong>Name:</strong> ${name}</p>
-                    <p><strong>Email:</strong> ${email}</p>
-                    <p><strong>Message:</strong></p>
-                    <p>${message}</p>
-                    `,
-            })
+      const { name, email, message, bundle } = args;
 
-            return lead;
+      if (!name || !email || !message) {
+        throw new Error("All fields are required");
+      }
 
-        },
+      const lead = await Lead.create({
+        name,
+        email,
+        message,
+        bundle,
+      });
 
-        createService: async (
-            _: unknown, 
-            args: {title:string, description:string}
-        ) => {
-            const service = new Service(args);
-            return await service.save();
-        },
+      await mailer.sendMail({
+        from: `"Forge Studio" <${process.env.EMAIL_USER}>`,
+        to: email,
+        subject: "We received your message 🚀",
+        html: `
+          <h2>Hi ${name},</h2>
+          <p>Thanks for reaching out to Forge Studio.</p>
+          <p>We’ve received your message and will get back to you shortly.</p>
+          <br/>
+          <p>— Forge Studio Team</p>
+        `,
+      });
 
-        createProject: async (
-            _:unknown,
-            args: {title:string , category:string}
-        ) => {
-            const project = new Project(args);
-            return await project.save();
-        }
-    }
+      await mailer.sendMail({
+        from: `"Forge Studio" <${process.env.EMAIL_USER}>`,
+        to: process.env.ADMIN_EMAIL,
+        subject: "New Forge Studio Lead",
+        html: `
+          <h3>New Contact Submission</h3>
+          <p><strong>Name:</strong> ${name}</p>
+          <p><strong>Email:</strong> ${email}</p>
+          <p><strong>Message:</strong></p>
+          <p>${message}</p>
+        `,
+      });
+
+      return lead;
+    },
+
+    updateLeadStatus: async (
+      _: unknown,
+      args: { id: string; status: string }
+    ) => {
+      await connectDB();
+
+      const lead = await Lead.findByIdAndUpdate(
+        args.id,
+        { status: args.status },
+        { new: true }
+      );
+
+      if (!lead) {
+        throw new Error("Lead not found");
+      }
+
+      return lead;
+    },
+
+    createService: async (
+      _: unknown,
+      args: { title: string; description: string }
+    ) => {
+      await connectDB();
+      return Service.create(args);
+    },
+
+    createProject: async (
+      _: unknown,
+      args: { title: string; category: string }
+    ) => {
+      await connectDB();
+      return Project.create(args);
+    },
+  },
+
+Lead: {
+  id: (parent: any) => parent._id.toString(),
+  status: (parent: any) =>
+    typeof parent.status === "string"
+      ? parent.status.toUpperCase()
+      : parent.status,
+},
 };

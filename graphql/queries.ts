@@ -18,3 +18,17 @@ export const GET_SERVICES = gql`
                }
             }
         `;
+
+export const GET_LEADS = gql`
+  query GetLeads {
+    leads {
+      id
+      name
+      email
+      message
+      bundle
+      status
+      createdAt
+    }
+  }
+`;

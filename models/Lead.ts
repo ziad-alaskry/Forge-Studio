@@ -11,10 +11,8 @@ export interface Lead {
   name: string;
   email: string;
   message: string;
-
   bundle?: string;
   status: LeadStatus;
-
   createdAt: Date;
 }
 
@@ -41,8 +39,8 @@ const LeadSchema = new Schema(
 
     status: {
       type: String,
-      enum: ["new", "contacted", "closed"],
-      default: "new",
+      enum: ["NEW", "CONTACTED", "IN_PROGRESS",'CLOSED'],
+      default: "NEW",
     },
   },
   { timestamps: true }

@@ -30,3 +30,12 @@ export const CREATE_LEAD = gql `
         }
     }
 `
+
+export const UPDATE_LEAD_STATUS = gql `
+    mutation UpdateLeadStatus($id: ID!, $status: LeadStatus!) {
+        updateLeadStatus(id: $id, status: $status) {
+            id
+            status
+        }
+    }
+`;
