@@ -62,7 +62,9 @@ const bundles: Bundle[] = [
 
 const PricingSection = ({onSelectBundle}: PricingSectionProps) => {
     return (
-        <section className="py-32 bg-black relativ">
+        <section 
+        id="pricing"
+        className="py-32 bg-black relativ">
             {/** Section header */}
             <div className="max-w-4xl mx-auto text-center mb-20 px-6">
                 <h2 className="text-4xl font-bold text-white mb-4">

@@ -20,7 +20,6 @@ export default function Home() {
         <title>Forge Studio</title>
       </Head>
       <ForgeHero/>
-      <ForgeNavbar/>
       <ForgeServices/>
       <ForgePortfolio/>
       <ForgeProcess/>

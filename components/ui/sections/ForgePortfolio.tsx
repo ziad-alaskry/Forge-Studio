@@ -41,7 +41,9 @@ const systems = [
 const ForgePortfolio = () => {
 
     return (
-        <section className="py-32 bg-black">
+        <section 
+        id="scope"
+        className="py-32 bg-black">
             <ForgeContainer>
                 <div className="mb-16 max-w-2xl">
                     <h2 className="text-3xl md:text-4xl font-semibold text-white mb-4">
