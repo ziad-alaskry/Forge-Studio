@@ -66,12 +66,11 @@ const ForgeNavbar: FC = () => {
           ) : (
             <>
               {session.user?.image && (
-                <img
-                  src={session.user.image}
-                  alt="User avatar"
-                  className="w-9 h-9 rounded-full border border-forgeGlow/30"
-                />
-              )}
+                <div className="w-8 h-8 rounded-full bg-forgeBlue flex items-center justify-center text-black font-bold">
+                  {session.user.email?.[0].toUpperCase()}
+                </div>
+
+              ) }
               <ForgeButton
                 label="Logout"
                 variant="secondary"

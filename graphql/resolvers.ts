@@ -3,6 +3,10 @@ import { Project } from "@/models/Project";
 import { Lead } from "@/models/Lead";
 import { mailer } from "@/lib/mailer";
 import { connectDB } from "@/lib/db";
+import { ADMIN_EMAIL } from "@/lib/admin";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/pages/api/auth/[...nextauth]";
+
 
 interface CreateLeadArgs {
   name: string;
@@ -10,6 +14,14 @@ interface CreateLeadArgs {
   message: string;
   bundle?: string;
 }
+
+const requireAdmin = async () => {
+    const session = await getServerSession(authOptions);
+    if(!session || session.user?.email !== ADMIN_EMAIL){
+        throw new Error("Not Authorized")
+    }
+}
+
 
 export const resolvers = {
   Query: {
@@ -79,6 +91,7 @@ export const resolvers = {
       _: unknown,
       args: { id: string; status: string }
     ) => {
+      await requireAdmin();
       await connectDB();
 
       const lead = await Lead.findByIdAndUpdate(

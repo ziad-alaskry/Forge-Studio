@@ -1,11 +1,11 @@
-import NextAuth from "next-auth"
+import NextAuth,{NextAuthOptions} from "next-auth"
 import GoogleProvider from 'next-auth/providers/google'
 import GitHubProvider from 'next-auth/providers/github'
 import { connectDB } from "@/lib/db";
 import User from "@/models/User";
 
 
-export default NextAuth({
+export const authOptions: NextAuthOptions = ({
     providers: [
         GoogleProvider({
             clientId: process.env.GOOGLE_CLIENT_ID!,
@@ -51,3 +51,5 @@ export default NextAuth({
   signIn: "/auth/signin",
 }
 });
+
+export default NextAuth(authOptions);
