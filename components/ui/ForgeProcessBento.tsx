@@ -35,12 +35,12 @@ const processSteps: ProcessStep[] = [
 
 const ForgeProcessBento = () => {
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-6 gap-6">
+    <div className="grid grid-cols-1 lg:grid-cols-6 gap-6 ">
       {processSteps.map((step, index) => (
         <div
           key={step.title}
           className={cn(
-            "relative rounded-2xl border border-white/10 bg-white/5 p-8",
+            "relative hover:-translate-y-1 hover:scale-[1.05] rounded-2xl border border-white/10 bg-white/5 p-8",
             "backdrop-blur-sm",
             step.span
           )}
