@@ -35,8 +35,6 @@ const services = [
     ],
   },
 ]
-  },
-];
 
 const ForgeServices = () => {
   return (

@@ -75,17 +75,13 @@ const ForgeProcess = () => {
                                 </div>
                             ))}
                         </div>
+                        {/* Bento Grid */}
+                        <ForgeProcessBento />
                     </ForgeContainer>
-                </section>
-                )
-}
-                {/* Bento Grid */}
-                <ForgeProcessBento />
-            </ForgeContainer>
-        </motion.div>
-      </LampContainer >
-    </section >
-  );
+                </motion.div>
+            </LampContainer >
+        </section >
+    );
 };
 
 export default ForgeProcess;
