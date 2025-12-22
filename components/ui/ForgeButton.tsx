@@ -1,31 +1,42 @@
-import {FC} from 'react';
+import { FC } from "react";
+import { HoverBorderGradient } from "@/components/ui/hover-border-gradient";
 
 type ForgeButtonVariant = "primary" | "secondary";
 
 interface ForgeButtonProps {
-    label: string;
-    onClick?: () => void;
-    type?: "button" | "submit";
-    variant?: ForgeButtonVariant;
+  label: string;
+  onClick?: () => void;
+  type?: "button" | "submit";
+  variant?: ForgeButtonVariant;
 }
 
-const ForgeButton: FC<ForgeButtonProps> = ({label, onClick, type= "button" , variant="primary"}) =>{
-    
-    const baseStyles = "px-6 py-3 rounded-xl font-medium transition-all";
-    const variants = {
-        primary:"bg-forgeBlue text-black hover:opacity-80",
-        secondary:"border border-frogeBlue text-forgeBlue hover:bg-forgeBlue/50"
-    };
+const ForgeButton: FC<ForgeButtonProps> = ({
+  label,
+  onClick,
+  type = "button",
+  variant = "primary",
+}) => {
+  const baseInnerStyles =
+    "font-medium transition-colors flex items-center justify-center";
 
-    
-    return (
-        <button 
-        type={type}
-        onClick={onClick}
-        className={`${baseStyles} ${variants[variant]}`} >
-            {label}
-        </button>
-    )
-}
+  const variants = {
+    primary:
+      "bg-forgeBlue text-black hover:text-white/80 hover:bg-forgeDark/50 transition",
+    secondary:
+      "bg-black text-forgeBlue hover:text-white/80 hover:bg-black/50 transition",
+  };
+
+  return (
+    <HoverBorderGradient
+      as="button"
+      containerClassName="rounded-xl"
+      className={`${baseInnerStyles} ${variants[variant]}`}
+      onClick={onClick}
+      type={type}
+    >
+      {label}
+    </HoverBorderGradient>
+  );
+};
 
 export default ForgeButton;

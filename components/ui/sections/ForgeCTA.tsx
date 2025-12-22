@@ -16,6 +16,7 @@ const ForgeCTA = ({onOpenContact}:ForgeCTAProps) => {
         <section
         id="cta"
         className="py-32 bg-forgeDark">
+            
             <ForgeContainer>
                 <div className="grid grid-cols-1 md:grid-cols-2
                 gap-16 items-center">

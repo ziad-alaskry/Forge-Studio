@@ -2,6 +2,7 @@ import { FC, useState } from "react";
 import Link from "next/link";
 import { signIn, signOut, useSession } from "next-auth/react";
 import ForgeButton from "@/components/ui/ForgeButton";
+import ScrollProgress from "./ScrollProgress";
 
 interface NavItem {
   label: string;
@@ -125,6 +126,7 @@ const ForgeNavbar: FC = () => {
           </div>
         </div>
       )}
+      <ScrollProgress/>
     </nav>
   );
 };

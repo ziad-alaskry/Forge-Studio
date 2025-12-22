@@ -1,19 +1,27 @@
 //import ForgeParallaxGlow from "./ForgeParallaxGlow";
 import ForgeOrb from "./ForgeOrb";
+import { EncryptedText } from "@/components/ui/encrypted-text"
 //import RevealText from "./RevealText";
 import ForgeButton from "../ui/ForgeButton";
 import ForgeContainer from "@/components/ui/ForgeContainer";
+import ForgeHeroBackground from "../forge/ForgeHeroBackground";
 
 const ForgeHero = () => {
     return (
-        <section className="relative py-32 overflow-hidden">
+        <section className="relative py-32 overflow-hidden bg-black">
             {/* subtle visual accent */}
+
             <ForgeOrb />
             <ForgeContainer>
                 <div className="grid grid-cols1 lg:grid-cols-2 gap-16 items-center">
-                    <h1 className="text-4xl md:text-5xl xl:text-6xl
+                    <h1 className="text-3xl md:text-4xl xl:text-5xl
                     font-semibold text-white leading-tight">
-                        We build production-grade systems for modern businesses.
+                        <EncryptedText
+                            text="We buid production-grade systems for modern businesses."
+                            encryptedClassName="text-white/30"
+                            revealedClassName="text-white"
+                            revealDelayMs={35}
+                        />
                     </h1>
                     <p className="text-lg text-white/70 max-w-xl ">
                         Admin dashboards, internal tools, and scalable web
