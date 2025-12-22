@@ -5,7 +5,7 @@ import { useQuery } from "@apollo/client/react";
 
 
 const services = [
-{
+  {
     title: "Admin Dashboards",
     description:
       "Secure dashboards to manage users, content, and business data.",
@@ -34,36 +34,36 @@ const services = [
       "Secure backend integration",
       "Performance-focused frontend",
     ],
-  }, 
+  },
 ]
 
 const ForgeServices = () => {
 
-    return (
-        <section
-        id="services"
-        className="py-32 bg-black">
-            <ForgeContainer>
-                <div className="mb-16 max-w-2xl">
-                    <h2 className="text-3xl md:text-4xl font-semibold
+  return (
+    <section
+      id="services"
+      className="py-32">
+      <ForgeContainer>
+        <div className="mb-16 max-w-2xl">
+          <h2 className="text-3xl md:text-4xl font-semibold
                     text-white mb-4">
-                        What We Build
-                    </h2>
-                    <p className="text-white/70">
-                        Focused systems designed to solve operational problems.
-                    </p>
-                </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 
+            What We Build
+          </h2>
+          <p className="text-white/70">
+            Focused systems designed to solve operational problems.
+          </p>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 
                 lg:grid-cols-3 gap-8">
-                    {services.map((service) => (
-                        <ForgeServiceCard
-                        key={service.title}
-                        {...service} />
-                    ))}
-                </div>
-            </ForgeContainer>
-        </section>
-    )
+          {services.map((service) => (
+            <ForgeServiceCard
+              key={service.title}
+              {...service} />
+          ))}
+        </div>
+      </ForgeContainer>
+    </section>
+  )
 }
 
 export default ForgeServices;

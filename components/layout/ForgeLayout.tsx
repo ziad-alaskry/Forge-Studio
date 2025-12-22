@@ -1,16 +1,18 @@
-import {FC , ReactNode} from 'react';
+import { FC, ReactNode } from 'react';
 import ForgeNavbar from './ForgeNavbar';
+import ForgeBackground from '../3d/ForgeBackground';
+
 interface ForgeLayoutProps {
     children: ReactNode;
 }
 
-const ForgeLayout: FC<ForgeLayoutProps> = ({children}) =>
-{
+const ForgeLayout: FC<ForgeLayoutProps> = ({ children }) => {
     return (
-        <div className='bg-forgeDark min-h-screen text-white'>
-            <ForgeNavbar/>
-            <main className=''>
-                {children} 
+        <div className='min-h-screen text-white relative'>
+            <ForgeBackground />
+            <ForgeNavbar />
+            <main className='relative z-10'>
+                {children}
             </main>
         </div>
     )

@@ -8,7 +8,7 @@ interface Bundle {
     price: string;
     description: string;
     features: string[];
-    cta: string; 
+    cta: string;
     highlighted?: boolean;
 }
 
@@ -18,53 +18,53 @@ interface PricingSectionProps {
 
 // static data feed 
 const bundles: Bundle[] = [
-  {
-    id: "starter",
-    name: "Starter",
-    price: "$199",
-    description: "Perfect for validating an idea or MVP.",
-    features: [
-      "Landing page or small website",
-      "Responsive design",
-      "Basic SEO setup",
-      "Email support",
-    ],
-    cta: "Start Project",
-  },
-  {
-    id: "growth",
-    name: "Growth",
-    price: "$499",
-    description: "For startups ready to scale.",
-    features: [
-      "Multi-page website",
-      "Custom UI components",
-      "Performance optimization",
-      "Priority support",
-    ],
-    cta: "Start Project",
-    highlighted: true,
-  },
-  {
-    id: "forge-plus",
-    name: "Forge+",
-    price: "Custom",
-    description: "Tailored solutions for ambitious teams.",
-    features: [
-      "Custom web application",
-      "Advanced integrations",
-      "Ongoing support",
-      "Dedicated consultation",
-    ],
-    cta: "Contact Us",
-  },
+    {
+        id: "starter",
+        name: "Starter",
+        price: "$199",
+        description: "Perfect for validating an idea or MVP.",
+        features: [
+            "Landing page or small website",
+            "Responsive design",
+            "Basic SEO setup",
+            "Email support",
+        ],
+        cta: "Start Project",
+    },
+    {
+        id: "growth",
+        name: "Growth",
+        price: "$499",
+        description: "For startups ready to scale.",
+        features: [
+            "Multi-page website",
+            "Custom UI components",
+            "Performance optimization",
+            "Priority support",
+        ],
+        cta: "Start Project",
+        highlighted: true,
+    },
+    {
+        id: "forge-plus",
+        name: "Forge+",
+        price: "Custom",
+        description: "Tailored solutions for ambitious teams.",
+        features: [
+            "Custom web application",
+            "Advanced integrations",
+            "Ongoing support",
+            "Dedicated consultation",
+        ],
+        cta: "Contact Us",
+    },
 ];
 
-const PricingSection = ({onSelectBundle}: PricingSectionProps) => {
+const PricingSection = ({ onSelectBundle }: PricingSectionProps) => {
     return (
-        <section 
-        id="pricing"
-        className="py-32 bg-black relativ">
+        <section
+            id="pricing"
+            className="py-32 relative">
             {/** Section header */}
             <div className="max-w-4xl mx-auto text-center mb-20 px-6">
                 <h2 className="text-4xl font-bold text-white mb-4">
@@ -80,46 +80,46 @@ const PricingSection = ({onSelectBundle}: PricingSectionProps) => {
             gap-6 px-6">
                 {bundles.map((bundle) => (
                     <div key={bundle.id}
-                    className={`
+                        className={`
                         relative rounded-2xl border 
                         ${bundle.highlighted ? "border-forgeBlue shadow-forgeGlow scale-[1.02]"
-                             : "border-forgeGlow/20"
-                        } bg-forgeMetal/60 backdrop-blur p-8 transition-all
+                                : "border-forgeGlow/20"
+                            } bg-forgeMetal/60 backdrop-blur p-8 transition-all
                         `} >
-                            {/** bundle header */}
-                            <h3 className="text-2xl font-semibold text-white mb-2">
-                                {bundle.name}
-                            </h3>
+                        {/** bundle header */}
+                        <h3 className="text-2xl font-semibold text-white mb-2">
+                            {bundle.name}
+                        </h3>
 
-                            <p className="text-forgeBlue text-3xl font-bold mb-4">
-                                {bundle.price}
-                            </p>
+                        <p className="text-forgeBlue text-3xl font-bold mb-4">
+                            {bundle.price}
+                        </p>
 
-                            <p className="text-white/60 mb-6">
-                                {bundle.description}
-                            </p>
+                        <p className="text-white/60 mb-6">
+                            {bundle.description}
+                        </p>
 
-                            {/** Features */}
-                            <ul className="space-y-3 mb-10">
-                                {bundle.features.map((feature, index)=> (
-                                    <li key={index} 
+                        {/** Features */}
+                        <ul className="space-y-3 mb-10">
+                            {bundle.features.map((feature, index) => (
+                                <li key={index}
                                     className="text-white/80 flex gap-2">
-                                        {feature}
-                                    </li>
-                                ))}
-                            </ul>
-                            
-                            {/** CTA */}
-                            <div className="w-full">
-                                <ForgeButton 
+                                    {feature}
+                                </li>
+                            ))}
+                        </ul>
+
+                        {/** CTA */}
+                        <div className="w-full">
+                            <ForgeButton
                                 label={bundle.cta}
                                 variant={bundle.highlighted ? "primary" : "secondary"}
                                 onClick={() => {
-                                        onSelectBundle(bundle.id)
+                                    onSelectBundle(bundle.id)
                                 }} />
-                            </div>
-
                         </div>
+
+                    </div>
                 ))}
             </div>
 

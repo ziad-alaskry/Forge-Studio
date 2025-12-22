@@ -3,7 +3,8 @@
 @tailwind utilities;
 
 body {
-  @apply bg-forgeDark text-white font-forge;
+  @apply text-white font-forge;
+  background-color: #0d0d0d;
 }
 
 * {
@@ -11,8 +12,10 @@ body {
 }
 
 html {
-  font-size: 15px;;
+  font-size: 15px;
+  ;
 }
+
 @media (min-width:640px) {
   html {
     font-size: 16px;
