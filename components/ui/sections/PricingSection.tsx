@@ -1,5 +1,5 @@
 import ForgeButton from "../ForgeButton";
-
+import {motion} from "motion/react"
 
 // interface forzen for future use: {Admen, Leads, CRM, PAyments - later -}
 interface Bundle {
@@ -65,6 +65,15 @@ const PricingSection = ({onSelectBundle}: PricingSectionProps) => {
         <section 
         id="pricing"
         className="py-32 bg-black relativ">
+            <motion.div
+            initial={{ opacity: 0.5, y: 60 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{
+              duration: 0.8,
+              ease: "easeOut",
+            }}
+            className=""
+          >  
             {/** Section header */}
             <div className="max-w-4xl mx-auto text-center mb-20 px-6">
                 <h2 className="text-4xl font-bold text-white mb-4">
@@ -122,7 +131,7 @@ const PricingSection = ({onSelectBundle}: PricingSectionProps) => {
                         </div>
                 ))}
             </div>
-
+                </motion.div>
         </section>
     )
 }

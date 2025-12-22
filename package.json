@@ -18,11 +18,13 @@
     "graphql": "^16.12.0",
     "mongodb": "^7.0.0",
     "mongoose": "^9.0.1",
+    "motion": "^12.23.26",
     "next": "16.0.10",
     "next-auth": "^4.24.13",
     "nodemailer": "^7.0.11",
     "react": "19.2.1",
-    "react-dom": "19.2.1"
+    "react-dom": "19.2.1",
+    "tailwind-merge": "^3.4.0"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^6.9.1",

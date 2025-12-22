@@ -2,6 +2,9 @@ import ForgePortfolioCard from "../ForgePortfolioCard";
 import ForgeContainer from "../ForgeContainer";
 import { useQuery } from "@apollo/client/react";
 import { GET_PROJECTS } from "@/graphql/queries";
+import { motion } from "framer-motion";
+import { LampContainer } from "@/components/ui/lamp";
+
 
 const systems = [
   {
@@ -44,7 +47,17 @@ const ForgePortfolio = () => {
         <section 
         id="scope"
         className="py-32 bg-black">
+          <LampContainer>
             <ForgeContainer>
+              <motion.div
+            initial={{ opacity: 0.5, y: 60 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{
+              duration: 0.8,
+              ease: "easeOut",
+            }}
+            className=""
+          >
                 <div className="mb-16 max-w-2xl">
                     <h2 className="text-3xl md:text-4xl font-semibold text-white mb-4">
                         Systems We Deliver
@@ -61,7 +74,9 @@ const ForgePortfolio = () => {
                         />
                     ))}
                 </div>
+              </motion.div>
             </ForgeContainer>
+          </LampContainer>
         </section>
     )
 }
