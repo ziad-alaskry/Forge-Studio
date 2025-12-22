@@ -64,7 +64,7 @@ const PricingSection = ({ onSelectBundle }: PricingSectionProps) => {
     return (
         <section
             id="pricing"
-            className="py-32 bg-black relativ">
+            className="py-32 relative">
             <motion.div
                 initial={{ opacity: 0.5, y: 60 }}
                 whileInView={{ opacity: 1, y: 0 }}

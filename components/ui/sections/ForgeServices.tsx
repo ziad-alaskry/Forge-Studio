@@ -38,7 +38,7 @@ const services = [
 
 const ForgeServices = () => {
   return (
-    <section id="services" className="py-32 bg-black">
+    <section id="services" className="py-32">
       {/* Lamp effect for section intro */}
       <LampContainer>
         <ForgeContainer>

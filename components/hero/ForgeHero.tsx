@@ -4,13 +4,14 @@ import { EncryptedText } from "@/components/ui/encrypted-text"
 //import RevealText from "./RevealText";
 import ForgeButton from "../ui/ForgeButton";
 import ForgeContainer from "@/components/ui/ForgeContainer";
-import ForgeHeroBackground from "../forge/ForgeHeroBackground";
+import ForgeBackground from "../3d/ForgeBackground";
 
 const ForgeHero = () => {
     return (
-        <section className="relative py-32 overflow-hidden bg-black">
+        <section className="relative py-32 overflow-hidden">
             {/* subtle visual accent */}
 
+            <ForgeBackground />
             <ForgeOrb />
             <ForgeContainer>
                 <div className="grid grid-cols1 lg:grid-cols-2 gap-16 items-center">
