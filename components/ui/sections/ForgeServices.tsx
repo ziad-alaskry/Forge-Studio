@@ -34,11 +34,11 @@ const services = [
       "Performance-focused frontend",
     ],
   },
-];
+]
 
 const ForgeServices = () => {
   return (
-    <section id="services" className="py-32 bg-black">
+    <section id="services" className="py-32">
       {/* Lamp effect for section intro */}
       <LampContainer>
         <ForgeContainer>
@@ -59,11 +59,11 @@ const ForgeServices = () => {
             </p>
           </motion.div>
         </ForgeContainer>
-      
 
-      {/* Services grid (NO lamp here) */}
-      <ForgeContainer>
-        <motion.div
+
+        {/* Services grid (NO lamp here) */}
+        <ForgeContainer>
+          <motion.div
             initial={{ opacity: 0.5, y: 60 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{
@@ -72,14 +72,14 @@ const ForgeServices = () => {
             }}
             className=""
           >
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {services.map((service) => (
-              <ForgeServiceCard key={service.title} {...service} />
-            ))}
-          </div>
-        </motion.div>
-      </ForgeContainer>
-    </LampContainer>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {services.map((service) => (
+                <ForgeServiceCard key={service.title} {...service} />
+              ))}
+            </div>
+          </motion.div>
+        </ForgeContainer>
+      </LampContainer>
     </section>
   );
 };

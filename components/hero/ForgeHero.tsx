@@ -4,14 +4,15 @@ import { EncryptedText } from "@/components/ui/encrypted-text"
 //import RevealText from "./RevealText";
 import ForgeButton from "../ui/ForgeButton";
 import ForgeContainer from "@/components/ui/ForgeContainer";
-import ForgeHeroBackground from "../forge/ForgeHeroBackground";
+import ForgeBackground from "../3d/ForgeBackground";
 
 const ForgeHero = () => {
-    return (    
-        <section className="relative py-28 overflow-hidden bg-black">
+    return (
+        <section className="relative py-32 overflow-hidden">
             {/* subtle visual accent */}
-            
-            <ForgeOrb/>
+
+            <ForgeBackground />
+            <ForgeOrb />
             <ForgeContainer>
                 <div className="grid grid-cols1 lg:grid-cols-2 gap-16 items-center">
                     <h1 className="text-3xl md:text-4xl xl:text-5xl
@@ -23,10 +24,13 @@ const ForgeHero = () => {
                             revealDelayMs={35}
                         />
                     </h1>
-                   
-                    <div className="flex gap-4 pt-4 absolute bottom-10">
+                    <p className="text-lg text-white/70 max-w-xl ">
+                        Admin dashboards, internal tools, and scalable web
+                        platforms - designed, built, and shipped with engineering descipline.
+                    </p>
+                    <div className="flex gap-4 pt-4">
                         <ForgeButton label="View Services" />
-                        <ForgeButton variant="secondary" label="Contact Studio"/>
+                        <ForgeButton variant="secondary" label="Contact Studio" />
                     </div>
                 </div>
             </ForgeContainer>
