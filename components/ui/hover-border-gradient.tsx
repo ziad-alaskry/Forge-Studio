@@ -22,7 +22,7 @@ export const HoverBorderGradient = <
   containerClassName,
   ...props
 }: HoverBorderGradientProps<T>) => {
-  const Component = as || "div";
+  const Component = (as || "div") as any;
 
   // 1. Create a continuous time counter in milliseconds
   const time = useTime();
