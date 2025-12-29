@@ -2,7 +2,7 @@ import {useQuery, useMutation} from "@apollo/client/react"
 import { GET_LEADS } from "@/graphql/queries" 
 import { UPDATE_LEAD_STATUS } from "@/graphql/mutations"
 import { Lead } from "@/type/lead";
-
+// x,yz 
 
 interface LeadQueryData {
     leads: Lead[];
