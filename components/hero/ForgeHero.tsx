@@ -5,8 +5,17 @@ import { EncryptedText } from "@/components/ui/encrypted-text"
 import ForgeButton from "../ui/ForgeButton";
 import ForgeContainer from "@/components/ui/ForgeContainer";
 import ForgeHeroBackground from "../forge/ForgeHeroBackground";
+import { useContactModal } from "@/hooks/useContactModal";
+import ForgeContactModal from "@/components/ui/ForgeContactModal";
 
-const ForgeHero = () => {
+interface ForgeCTAProps{
+    onOpenContact: (bundleId?: string) => void;
+}
+
+
+const ForgeHero = ({onOpenContact}:ForgeCTAProps) => {
+
+    const contactModal = useContactModal();
     return (    
         <section className="relative py-28 overflow-hidden bg-black">
             {/* subtle visual accent */}
@@ -25,8 +34,12 @@ const ForgeHero = () => {
                     </h1>
                    
                     <div className="flex gap-4 pt-4 absolute bottom-10">
-                        <ForgeButton label="View Services" />
-                        <ForgeButton variant="secondary" label="Contact Studio"/>
+                        <ForgeButton label="View Services"
+                        onClick={() => document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' })}
+                         />
+                        <ForgeButton variant="secondary" label="Contact Studio"
+                         onClick={() => onOpenContact()}
+                        />
                     </div>
                 </div>
             </ForgeContainer>

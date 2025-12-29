@@ -19,7 +19,7 @@ export default function Home() {
       <Head>
         <title>Forge Studio</title>
       </Head>
-      <ForgeHero/>
+      <ForgeHero onOpenContact={contactModal.open}/>
       <ForgeServices/>
       <ForgePortfolio/>
       <ForgeProcess/>
